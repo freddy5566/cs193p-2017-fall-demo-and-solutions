@@ -7,13 +7,13 @@
 
 |  Lectures |  Slides | Demo | Date |   
 | ----------| ------- | ----- | ---- |
-| [Lecture 1]() |  [slide](./lecture_1/Lecture_1_Slides.pdf)  | [demo](./lecture_1/demo) | Dec 26, 2017 
-| [Lecture 2]() |  [slide](./lecture_2/Lecture_2_Slides.pdf)  | [demo](./lecture_2/demo) | Dec 27, 2017   
-| [Lecture 3]() |  [slide](./lecture_3/Lecture_3_Slides.pdf)  | [demo](./lecture_3/demo) | Dec 29, 2017
-| [Lecture 4]() |  [slide](./lecture_4/Lecture_4_Slides.pdf)  | [demo](./lecture_4/demo) | Dec 30, 2017 
-| [Lecture 5]() |  [slide](./lecture_5/Lecture_5_Slides.pdf)  | [demo](./lecture_5/demo) | Dec 30, 2017 
-| [Lecture 6]() |  [slide](./lecture_6/Lecture_6_Slides.pdf)  | [demo](./lecture_6/demo) | Jan 1, 2018 
-| [Lecture 7]() |  [slide](./lecture_7/Lecture_7_Slides.pdf)  | [demo](./lecture_7/demo) | Jan 1, 2018 
+| [Lecture 1](https://www.youtube.com/watch?v=71pyOB4TPRE&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq&index=1) |  [slide](./lecture_1/Lecture_1_Slides.pdf)  | [demo](./lecture_1/demo) | Dec 26, 2017 
+| [Lecture 2](https://www.youtube.com/watch?v=w7a79cx3UaY&index=2&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq) |  [slide](./lecture_2/Lecture_2_Slides.pdf)  | [demo](./lecture_2/demo) | Dec 27, 2017   
+| [Lecture 3](https://www.youtube.com/watch?v=ZbpjTPzf8x4&index=4&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq) |  [slide](./lecture_3/Lecture_3_Slides.pdf)  | [demo](./lecture_3/demo) | Dec 29, 2017
+| [Lecture 4](https://www.youtube.com/watch?v=FU2V0YRQIOw&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq&index=5) |  [slide](./lecture_4/Lecture_4_Slides.pdf)  | [demo](./lecture_4/demo) | Dec 30, 2017 
+| [Lecture 5](https://www.youtube.com/watch?v=h2hm2AtanRU&index=6&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq) |  [slide](./lecture_5/Lecture_5_Slides.pdf)  | [demo](./lecture_5/demo) | Dec 30, 2017 
+| [Lecture 6](https://www.youtube.com/watch?v=_a0X5J3M2I8&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq&index=7) |  [slide](./lecture_6/Lecture_6_Slides.pdf)  | [demo](./lecture_6/demo) | Jan 1, 2018 
+| [Lecture 7](https://www.youtube.com/watch?v=5B5IRK9wYjI&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq&index=8) |  [slide](./lecture_7/Lecture_7_Slides.pdf)  | [demo](./lecture_7/demo) | Jan 1, 2018 
 | [Lecture 8](https://www.youtube.com/watch?v=84ZhYhAwYqo&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq&index=9) |  [slide](./lecture_8/Lecture_8_Slides.pdf)  | [demo](./lecture_8/demo) | Jan 6, 2018 
 
 
