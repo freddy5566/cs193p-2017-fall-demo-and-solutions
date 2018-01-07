@@ -15,7 +15,8 @@
 | [Lecture 6](https://www.youtube.com/watch?v=_a0X5J3M2I8&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq&index=7) |  [slide](./lecture_6/Lecture_6_Slides.pdf)  | [demo](./lecture_6/demo) | Jan 1, 2018 
 | [Lecture 7](https://www.youtube.com/watch?v=5B5IRK9wYjI&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq&index=8) |  [slide](./lecture_7/Lecture_7_Slides.pdf)  | [demo](./lecture_7/demo) | Jan 1, 2018 
 | [Lecture 8](https://www.youtube.com/watch?v=84ZhYhAwYqo&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq&index=9) |  [slide](./lecture_8/Lecture_8_Slides.pdf)  | [demo](./lecture_8/demo) | Jan 6, 2018 
-
+| [Lecture 9](https://www.youtube.com/watch?v=tLsPoVDXDG8&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq&index=10) |  [slide](./lecture_9/Lecture_9_Slides.pdf)  | [demo](./lecture_9/demo) | Jan 7, 2018 
+| [Lecture 10](https://www.youtube.com/watch?v=kl2bDYiSgoc&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq&index=11) |  [slide](./lecture_10/Lecture_10_Slides.pdf)  | [demo](./lecture_10/demo) | Jan 7, 2018 
 
 
 ## Friday Session
