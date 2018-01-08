@@ -18,6 +18,8 @@
 | [Lecture 9](https://www.youtube.com/watch?v=tLsPoVDXDG8&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq&index=10) |  [slide](./lecture_9/Lecture_9_Slides.pdf)  | [demo](./lecture_9/demo) | Jan 7, 2018 
 | [Lecture 10](https://www.youtube.com/watch?v=kl2bDYiSgoc&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq&index=11) |  [slide](./lecture_10/Lecture_10_Slides.pdf)  | [demo](./lecture_10/demo) | Jan 7, 2018 
 | [Lecture 11](https://www.youtube.com/watch?v=M3X9o9wbn9o) |  [slide](./lecture_11/Lecture_11_Slides.pdf)  | [demo](./lecture_11/demo) | Jan 7, 2018 
+| [Lecture 12](https://www.youtube.com/watch?v=cTUlAXBiTho&index=14&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq) |  [slide](./lecture_12/Lecture_12_Slides.pdf)  | [demo](./lecture_12/demo) | Jan 8, 2018 
+
 
 
 ## Friday Session
