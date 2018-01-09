@@ -25,15 +25,15 @@
 | [Lecture 16](https://www.youtube.com/watch?v=ke9fzOdg5Pk&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq&index=18) |  [slide](./lecture_14/Lecture_16_Slides.pdf)  | [demo](./lecture_16/demo) | Jan 9, 2018 
 | [Lecture 17](https://www.youtube.com/watch?v=qOTY7cEl9ZA&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq&index=19) |  [slide](./lecture_14/Lecture_17_Slides.pdf)  | [demo](./lecture_17/demo) | Jan 9, 2018 
 
-## 2017 winter core data 
+## 2017 Winter Core Data 
 
 ### this quarter didn't cover it, but it seems important 
 
 |  Lectures |  Slides | Demo | Date |
 | :--------:| :-----: | :---:| :--: |
-| [Table View](https://www.youtube.com/watch?v=78LWmmDxr4k&index=9&list=PLPA-ayBrweUz32NSgNZdl0_QISw-f12Ai) |  [slide](./2017_winter/Lecture-9-Slides.pdf)  | [demo](./2017_winter/L9\ Smashtag) | Jan 9, 2018 
+| [Table View](https://www.youtube.com/watch?v=78LWmmDxr4k&index=9&list=PLPA-ayBrweUz32NSgNZdl0_QISw-f12Ai) |  [slide](./2017_winter/Lecture-9-Slides.pdf)  | [demo](./2017_winter/L9_Smashtag) | Jan 9, 2018 
 | [ Core Data](https://www.youtube.com/watch?v=ssIpdu73p7A&index=10&list=PLPA-ayBrweUz32NSgNZdl0_QISw-f12Ai) |  [slide](./2017_winter/Lecture-10-Slides.pdf)  | __nil__ | Jan 9, 2018 
-| [Core Data Demo](https://www.youtube.com/watch?v=whF63GTaW1w&index=11&list=PLPA-ayBrweUz32NSgNZdl0_QISw-f12Ai) | __nil__ | [demo](./2017_winter/L11\ Smashtag) | Jan 9, 2018 
+| [Core Data Demo](https://www.youtube.com/watch?v=whF63GTaW1w&index=11&list=PLPA-ayBrweUz32NSgNZdl0_QISw-f12Ai) | __nil__ | [demo](./2017_winter/L11_Smashtag) | Jan 9, 2018 
 
 
 ## Friday Session
