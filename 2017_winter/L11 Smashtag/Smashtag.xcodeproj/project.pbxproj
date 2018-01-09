@@ -1,0 +1,368 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EC3343301E552B9F001EC59C /* Smash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EC33432E1E552B9F001EC59C /* Smash.xcdatamodeld */; };
+		EC3343321E552D8B001EC59C /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3343311E552D8B001EC59C /* Tweet.swift */; };
+		EC3343341E552DB0001EC59C /* TwitterUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3343331E552DB0001EC59C /* TwitterUser.swift */; };
+		EC3343361E552E8C001EC59C /* SmashTweetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3343351E552E8C001EC59C /* SmashTweetTableViewController.swift */; };
+		EC3343381E553635001EC59C /* SmashTweetersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3343371E553635001EC59C /* SmashTweetersTableViewController.swift */; };
+		EC33433A1E553806001EC59C /* FetchedResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3343391E553806001EC59C /* FetchedResultsTableViewController.swift */; };
+		EC33433C1E55388B001EC59C /* UITableViewDataSource+NSFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC33433B1E55388B001EC59C /* UITableViewDataSource+NSFetchedResultsController.swift */; };
+		EC7D5EBF1E4BF94B009A2E85 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D5EBE1E4BF94B009A2E85 /* AppDelegate.swift */; };
+		EC7D5EC41E4BF94B009A2E85 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC7D5EC21E4BF94B009A2E85 /* Main.storyboard */; };
+		EC7D5EC61E4BF94B009A2E85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC7D5EC51E4BF94B009A2E85 /* Assets.xcassets */; };
+		EC7D5EC91E4BF94B009A2E85 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC7D5EC71E4BF94B009A2E85 /* LaunchScreen.storyboard */; };
+		EC7D5ED21E4BF992009A2E85 /* TweetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D5ED11E4BF992009A2E85 /* TweetTableViewController.swift */; };
+		EC7D5ED81E4C0239009A2E85 /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D5ED71E4C0239009A2E85 /* TweetTableViewCell.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		EC33432F1E552B9F001EC59C /* Smash.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Smash.xcdatamodel; sourceTree = "<group>"; };
+		EC3343311E552D8B001EC59C /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		EC3343331E552DB0001EC59C /* TwitterUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUser.swift; sourceTree = "<group>"; };
+		EC3343351E552E8C001EC59C /* SmashTweetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmashTweetTableViewController.swift; sourceTree = "<group>"; };
+		EC3343371E553635001EC59C /* SmashTweetersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmashTweetersTableViewController.swift; sourceTree = "<group>"; };
+		EC3343391E553806001EC59C /* FetchedResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedResultsTableViewController.swift; sourceTree = "<group>"; };
+		EC33433B1E55388B001EC59C /* UITableViewDataSource+NSFetchedResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewDataSource+NSFetchedResultsController.swift"; sourceTree = "<group>"; };
+		EC7D5EBB1E4BF94B009A2E85 /* Smashtag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Smashtag.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC7D5EBE1E4BF94B009A2E85 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EC7D5EC31E4BF94B009A2E85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EC7D5EC51E4BF94B009A2E85 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EC7D5EC81E4BF94B009A2E85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EC7D5ECA1E4BF94B009A2E85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC7D5ED11E4BF992009A2E85 /* TweetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewController.swift; sourceTree = "<group>"; };
+		EC7D5ED71E4C0239009A2E85 /* TweetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EC7D5EB81E4BF94B009A2E85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EC33433D1E562329001EC59C /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				EC33432E1E552B9F001EC59C /* Smash.xcdatamodeld */,
+				EC3343391E553806001EC59C /* FetchedResultsTableViewController.swift */,
+				EC33433B1E55388B001EC59C /* UITableViewDataSource+NSFetchedResultsController.swift */,
+				EC3343311E552D8B001EC59C /* Tweet.swift */,
+				EC3343331E552DB0001EC59C /* TwitterUser.swift */,
+			);
+			name = "Core Data";
+			sourceTree = "<group>";
+		};
+		EC7D5EB21E4BF94B009A2E85 = {
+			isa = PBXGroup;
+			children = (
+				EC7D5EBD1E4BF94B009A2E85 /* Smashtag */,
+				EC7D5EBC1E4BF94B009A2E85 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EC7D5EBC1E4BF94B009A2E85 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EC7D5EBB1E4BF94B009A2E85 /* Smashtag.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EC7D5EBD1E4BF94B009A2E85 /* Smashtag */ = {
+			isa = PBXGroup;
+			children = (
+				EC7D5EC21E4BF94B009A2E85 /* Main.storyboard */,
+				EC3343351E552E8C001EC59C /* SmashTweetTableViewController.swift */,
+				EC3343371E553635001EC59C /* SmashTweetersTableViewController.swift */,
+				EC33433D1E562329001EC59C /* Core Data */,
+				EC7D5ED11E4BF992009A2E85 /* TweetTableViewController.swift */,
+				EC7D5ED71E4C0239009A2E85 /* TweetTableViewCell.swift */,
+				EC7D5ECA1E4BF94B009A2E85 /* Info.plist */,
+				EC7D5ED01E4BF956009A2E85 /* Supporting Files */,
+			);
+			path = Smashtag;
+			sourceTree = "<group>";
+		};
+		EC7D5ED01E4BF956009A2E85 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EC7D5EBE1E4BF94B009A2E85 /* AppDelegate.swift */,
+				EC7D5EC51E4BF94B009A2E85 /* Assets.xcassets */,
+				EC7D5EC71E4BF94B009A2E85 /* LaunchScreen.storyboard */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EC7D5EBA1E4BF94B009A2E85 /* Smashtag */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC7D5ECD1E4BF94B009A2E85 /* Build configuration list for PBXNativeTarget "Smashtag" */;
+			buildPhases = (
+				EC7D5EB71E4BF94B009A2E85 /* Sources */,
+				EC7D5EB81E4BF94B009A2E85 /* Frameworks */,
+				EC7D5EB91E4BF94B009A2E85 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Smashtag;
+			productName = Smashtag;
+			productReference = EC7D5EBB1E4BF94B009A2E85 /* Smashtag.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EC7D5EB31E4BF94B009A2E85 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Stanford University";
+				TargetAttributes = {
+					EC7D5EBA1E4BF94B009A2E85 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = EC7D5EB61E4BF94B009A2E85 /* Build configuration list for PBXProject "Smashtag" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EC7D5EB21E4BF94B009A2E85;
+			productRefGroup = EC7D5EBC1E4BF94B009A2E85 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EC7D5EBA1E4BF94B009A2E85 /* Smashtag */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EC7D5EB91E4BF94B009A2E85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC7D5EC91E4BF94B009A2E85 /* LaunchScreen.storyboard in Resources */,
+				EC7D5EC61E4BF94B009A2E85 /* Assets.xcassets in Resources */,
+				EC7D5EC41E4BF94B009A2E85 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EC7D5EB71E4BF94B009A2E85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC3343361E552E8C001EC59C /* SmashTweetTableViewController.swift in Sources */,
+				EC33433A1E553806001EC59C /* FetchedResultsTableViewController.swift in Sources */,
+				EC33433C1E55388B001EC59C /* UITableViewDataSource+NSFetchedResultsController.swift in Sources */,
+				EC7D5EBF1E4BF94B009A2E85 /* AppDelegate.swift in Sources */,
+				EC3343321E552D8B001EC59C /* Tweet.swift in Sources */,
+				EC3343341E552DB0001EC59C /* TwitterUser.swift in Sources */,
+				EC7D5ED21E4BF992009A2E85 /* TweetTableViewController.swift in Sources */,
+				EC3343301E552B9F001EC59C /* Smash.xcdatamodeld in Sources */,
+				EC7D5ED81E4C0239009A2E85 /* TweetTableViewCell.swift in Sources */,
+				EC3343381E553635001EC59C /* SmashTweetersTableViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EC7D5EC21E4BF94B009A2E85 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC7D5EC31E4BF94B009A2E85 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EC7D5EC71E4BF94B009A2E85 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC7D5EC81E4BF94B009A2E85 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EC7D5ECB1E4BF94B009A2E85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EC7D5ECC1E4BF94B009A2E85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EC7D5ECE1E4BF94B009A2E85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Smashtag/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.cs193p.lecture.Smashtag;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		EC7D5ECF1E4BF94B009A2E85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Smashtag/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.cs193p.lecture.Smashtag;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EC7D5EB61E4BF94B009A2E85 /* Build configuration list for PBXProject "Smashtag" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC7D5ECB1E4BF94B009A2E85 /* Debug */,
+				EC7D5ECC1E4BF94B009A2E85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC7D5ECD1E4BF94B009A2E85 /* Build configuration list for PBXNativeTarget "Smashtag" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC7D5ECE1E4BF94B009A2E85 /* Debug */,
+				EC7D5ECF1E4BF94B009A2E85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		EC33432E1E552B9F001EC59C /* Smash.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				EC33432F1E552B9F001EC59C /* Smash.xcdatamodel */,
+			);
+			currentVersion = EC33432F1E552B9F001EC59C /* Smash.xcdatamodel */;
+			path = Smash.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = EC7D5EB31E4BF94B009A2E85 /* Project object */;
+}
