@@ -15,11 +15,7 @@ struct Card{
     var number: Number
     var shape: Shape
     var fill: Fill
-    
-    static var identifier = 0
-    
-    
-    
+
     lazy var matrix = [color.rawValue, number.rawValue, shape.rawValue, fill.rawValue]
     
     enum Color: String, CustomStringConvertible {
@@ -61,7 +57,6 @@ struct Card{
         number = n
         shape = s
         fill = f
-        Card.identifier += 1
     }
     
 }
@@ -74,13 +69,13 @@ extension Card: CustomStringConvertible {
     
 }
 
-extension Card: Hashable {
-    var hashValue: Int {
-        return Card.identifier
-    }
-    
+extension Card: Equatable{
+   
     static func ==(lhs: Card, rhs: Card) -> Bool {
-        return lhs.hashValue == rhs.hashValue
+        return lhs.color == rhs.color &&
+                lhs.shape == rhs.shape &&
+                lhs.number == rhs.number &&
+                lhs.fill == rhs.fill
     }
     
     

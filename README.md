@@ -56,7 +56,7 @@
 |  Assignment                               |  Solution | Date |        
 | ----------------------------------------  | --------- | -----|
 | [Concentration](assignment/Project_1.pdf) | [Concentration](.//Concentration) | Dec 29. 2017
-| [Set](assignment/Project_2.pdf) | [Set](.//Set) | Jan 1. 2018
+| [Set](assignment/Project_2.pdf) | [Set](.//Set) | Jan 10. 2018
 | [Graphical Set](assignment/Project_3.pdf) |  
 | [Animated Set](assignment/Project_4.pdf) | 
 | [Image Gallery](assignment/Project_5.pdf) |  

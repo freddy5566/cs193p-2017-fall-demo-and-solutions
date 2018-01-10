@@ -19,40 +19,51 @@ struct SetEngine {
     
     private(set) var cardOnTable = [Card]()
     private var selectedCard = [Card]()
-    
+    var hintCard = [Int]()
     
     mutating func chooseCard(at index: Int) {
-        if selectedCard.contains(cardOnTable[index]) && selectedCard.count < 3 {
+        if selectedCard.contains(cardOnTable[index]) {
             selectedCard.remove(at: selectedCard.index(of: cardOnTable[index])!)
+            return
         }
         if selectedCard.count == 3 {
-            if isSet() {
+            if isSet(on: selectedCard) {
                 for cards in selectedCard {
                     cardOnTable.remove(at: cardOnTable.index(of: cards)!)
                 }
-                clearSelectedCards()
+                selectedCard.removeAll()
                 draw()
                 score += 1
+            } else {
+                score -= 1
             }
         }
         selectedCard += [cardOnTable[index]]
     }
     
-    private mutating func isSet() -> Bool {
-        let first = selectedCard.first
-        var numberOfSame = 0
-        for cards in selectedCard {
-            if cards.color == first?.color { numberOfSame += 1 }
-            if cards.fill == first?.fill { numberOfSame += 1 }
-            if cards.number == first?.number { numberOfSame += 1 }
-            if cards.shape == first?.shape { numberOfSame += 1 }
-        }
+    mutating func isSet(on selectedCard: [Card]) -> Bool {
+      
+        let color = Set(selectedCard.map{ $0.color }).count
+        let shape = Set(selectedCard.map{ $0.shape }).count
+        let number = Set(selectedCard.map{ $0.number }).count
+        let fill = Set(selectedCard.map{ $0.fill }).count
         
-        return numberOfSame % 3 == 0 || numberOfSame == 0
+        
+        return color != 2 && shape != 2 && number != 2 && fill != 2
     }
     
-    mutating func clearSelectedCards() {
-        selectedCard.removeAll()
+    mutating func hint() {
+        hintCard.removeAll()
+        for i in 0..<cardOnTable.count {
+            for j in (i + 1)..<cardOnTable.count {
+                for k in (j + 1)..<cardOnTable.count {
+                    let hints = [cardOnTable[i], cardOnTable[j], cardOnTable[k]]
+                    if isSet(on: hints) {
+                        hintCard += [i, j, k]
+                    }
+                }
+            }
+        }
     }
     
     mutating func draw() {
@@ -61,15 +72,6 @@ struct SetEngine {
                 cardOnTable += [deck.remove(at: deck.randomIndex)]
             }
         }
-    }
-    
-    mutating func reset() {
-        let numberOfCardOnTable = cardOnTable.count
-        for _ in 0..<numberOfCardOnTable {
-            deck += [cardOnTable.remove(at: 0)]
-        }
-        initDeck()
-        score = 0
     }
     
     private mutating func initDeck() {
