@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B41569420085FCE001BEF2E /* objectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B41569320085FCE001BEF2E /* objectView.swift */; };
 		3BBE6DCD1FF7CE25001EC047 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE6DCC1FF7CE25001EC047 /* AppDelegate.swift */; };
 		3BBE6DCF1FF7CE25001EC047 /* SetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE6DCE1FF7CE25001EC047 /* SetViewController.swift */; };
 		3BBE6DD21FF7CE25001EC047 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BBE6DD01FF7CE25001EC047 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B41569320085FCE001BEF2E /* objectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = objectView.swift; sourceTree = "<group>"; };
 		3BBE6DC91FF7CE25001EC047 /* Set.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Set.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BBE6DCC1FF7CE25001EC047 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BBE6DCE1FF7CE25001EC047 /* SetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetViewController.swift; sourceTree = "<group>"; };
@@ -102,8 +104,9 @@
 		3BBE6DE820062344001EC047 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3BBE6DE92006236A001EC047 /* CardView.swift */,
 				3BBE6DEB20062BA1001EC047 /* SetView.swift */,
+				3BBE6DE92006236A001EC047 /* CardView.swift */,
+				3B41569320085FCE001BEF2E /* objectView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BBE6DE51FF7D6AC001EC047 /* SetEngine.swift in Sources */,
+				3B41569420085FCE001BEF2E /* objectView.swift in Sources */,
 				3BBE6DEC20062BA1001EC047 /* SetView.swift in Sources */,
 				3BBE6DCF1FF7CE25001EC047 /* SetViewController.swift in Sources */,
 				3BBE6DE31FF7D319001EC047 /* Card.swift in Sources */,
