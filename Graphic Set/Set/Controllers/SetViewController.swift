@@ -11,125 +11,167 @@ import UIKit
 class SetViewController: UIViewController {
     
     private var engine = SetEngine()
-    private var selectedButton = [CardView]()
-    private var hintedButton = [CardView]()
+    private var selectedcard = [CardView]()
+    private var hintedCard = [CardView]()
+    private var cardsOnScreen = [CardView]()
     
-    @IBOutlet private var cardsButton: [CardView]!
+    @IBOutlet weak var setView: SetView! {
+        didSet {
+            let swipe = UISwipeGestureRecognizer(target: self, action: #selector(draw(_:)))
+            swipe.direction = [.left, .right]
+            setView.addGestureRecognizer(swipe)
+            setView.addGestureRecognizer(UIRotationGestureRecognizer(target: self, action: #selector(shuffle(_:))))
+        }
+    }
+    
     @IBOutlet weak private var moreThreeButton: UIButton!
     @IBOutlet weak private var hintButton: UIButton!
     @IBOutlet weak private var newGameButton: UIButton!
     @IBOutlet weak private var scorceLabel: UILabel!
     
-//    @IBAction private func cardsButtonPressed(_ sender: CardView) {
-//        if let cardIndex = cardsButton.index(of: sender) {
-//            if cardIndex < engine.cardOnTable.count {
-//                engine.chooseCard(at: cardIndex)
-//                chooseButton(at: sender)
-//                updateViewFromModel()
-//            }
-//        } else {
-//            print("chosen card was not in cardButtons")
-//        }
-//        print(selectedButton.count)
-//    }
     
     private func updateScore() {
         scorceLabel.text = "\(engine.score)"
     }
     
-    private func chooseButton(at card: CardView) {
-        if selectedButton.contains(card) {
-            card.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
-            card.layer.borderWidth = 3.0
-            selectedButton.remove(at: selectedButton.index(of: card)!)
-            return
-        } else if selectedButton.count == 3 {
-                cardsButton.forEach() { $0.layer.borderColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 0) }
-                selectedButton.removeAll()
-                updateScore()
-            }
-            selectedButton += [card]
-            card.layer.borderColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
-            card.layer.borderWidth = 3.0
+    @objc private func shuffle(_ recognizer: UIRotationGestureRecognizer) {
+        cardsOnScreen.forEach {
+            $0.removeFromSuperview()
         }
+        cardsOnScreen.removeAll()
+        updateViewFromModel()
+    }
+    
+    @objc private func draw(_ recognizer: UISwipeGestureRecognizer) {
+        
+        engine.draw()
+        cardsOnScreen.forEach {
+            $0.removeFromSuperview()
+        }
+        cardsOnScreen.removeAll()
+        updateViewFromModel()
+        hiddenButtonIfNeed()
+        
+    }
+    
     
     @IBAction private func moreThreeButtonPressed(_ sender: UIButton) {
-        if selectedButton.count == 3 {
-            
-        }
+        
         engine.draw()
+        cardsOnScreen.forEach {
+            $0.removeFromSuperview()
+        }
+        cardsOnScreen.removeAll()
         updateViewFromModel()
         hiddenButtonIfNeed()
     }
     
     @IBAction private func hintButtonPressed(_ sender: UIButton) {
         engine.hint()
-        if engine.hintCard.count > 0 {
-            for hint in 0...2 {
-                let index = engine.hintCard[hint]
-                cardsButton[index].layer.borderColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-                cardsButton[index].layer.borderWidth = 3.0
-                hintedButton.append(cardsButton[index])
-            }
-            hintedButton.removeAll()
+        if engine.hintCard.count < 3 { return }
+        for index in 0...2 {
+            hintedCard.append(cardsOnScreen[engine.hintCard[index]])
+            cardsOnScreen[engine.hintCard[index]].state = State.stateOfSeclection.hinted
+            cardsOnScreen[engine.hintCard[index]].setNeedsDisplay()
         }
+        hintedCard.removeAll()
     }
     
     @IBAction private func newGameButtonPressed(_ sender: UIButton) {
         engine = SetEngine()
+        cardsOnScreen.forEach {
+            $0.removeFromSuperview()
+        }
+        cardsOnScreen.removeAll()
         updateViewFromModel()
         hiddenButtonIfNeed()
         updateScore()
-        selectedButton.removeAll()
-        hintedButton.removeAll()
+        selectedcard.removeAll()
+        hintedCard.removeAll()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViewFromModel()
+        
     }
     
     private func hiddenButtonIfNeed() {
-        if engine.cardOnTable.count == 24 || engine.numberOfCard == 0 {
+        if engine.numberOfCard == 0 {
             moreThreeButton.isHidden = true
         } else {
             moreThreeButton.isHidden = false
         }
     }
     
-  
+    
     private func updateViewFromModel() {
-        
+        let grid = SetGrid(for: setView.bounds, withNoOfFrames: engine.cardOnTable.count)
+        for index in engine.cardOnTable.indices {
+            cardsOnScreen.append(CardView(frame: grid[index]!, card: engine.cardOnTable[index])) 
+            setView.addSubview(cardsOnScreen[index])
+            cardsOnScreen[index].contentMode = .redraw
+            cardsOnScreen[index].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapCard(_:))))
+            
+        }
     }
     
-    private func setCardTitle(with card: Card) -> NSAttributedString {
+    private var isSet: Bool {
+        if selectedcard.count == 3 {
+            return engine.isSet(on: engine.selectedCard)
+        }
+        return false
+    }
+
+    
+    @objc private func tapCard(_ recognizer: UITapGestureRecognizer) {
+        guard let tappedCard = recognizer.view as? CardView else { return }
+        print(tappedCard.card!)
+        engine.chooseCard(at: cardsOnScreen.index(of: tappedCard)!)
         
-        let attributes: [NSAttributedStringKey: Any] = [
-            .strokeColor: ModelToView.colors[card.color]!,
-            .strokeWidth: ModelToView.strokeWidth[card.fill]!,
-            .foregroundColor: ModelToView.colors[card.color]!.withAlphaComponent(ModelToView.alpha[card.fill]!),
-            ]
-        var cardTitle = ModelToView.shapes[card.shape]!
-        switch card.number {
-        case .two: cardTitle = "\(cardTitle)\n\(cardTitle)"
-        case .three: cardTitle = "\(cardTitle)\n\(cardTitle)\n\(cardTitle)"
-        default:
-            break
+        if let state = tappedCard.state {
+            switch state {
+            case .selected:
+                tappedCard.state = State.stateOfSeclection.unselected
+                selectedcard.remove(at: selectedcard.index(of: tappedCard)!)
+            case .unselected:
+                tappedCard.state = State.stateOfSeclection.selected
+                selectedcard.append(tappedCard)
+            case .hinted:
+                tappedCard.state = State.stateOfSeclection.selected
+                selectedcard.append(tappedCard)
+            }
+        }
+        tappedCard.setNeedsDisplay()
+        
+        if selectedcard.count == 3  {
+            
+            if isSet {
+                selectedcard.removeAll()
+                cardsOnScreen.forEach {
+                    $0.removeFromSuperview()
+                }
+                cardsOnScreen.removeAll()
+                updateViewFromModel()
+                
+            } else {
+                cardsOnScreen.forEach() {
+                    $0.state = State.stateOfSeclection.unselected
+                    $0.setNeedsDisplay()
+                }
+                selectedcard.removeAll()
+            }
+            updateScore()
         }
         
-        return NSAttributedString(string: cardTitle, attributes: attributes)
+        print(selectedcard.count)
+        
     }
     
-}
 
-struct ModelToView {
+
     
-    static let shapes: [Card.Shape: String] = [.circle: "●", .triangle: "▲", .square: "■"]
-    static var colors: [Card.Color: UIColor] = [.red: #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1), .purple: #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1), .green: #colorLiteral(red: 0, green: 0.9768045545, blue: 0, alpha: 1)]
-    static var alpha: [Card.Fill: CGFloat] = [.solid: 1.0, .empty: 0.40, .stripe: 0.15]
-    static var strokeWidth: [Card.Fill: CGFloat] = [.solid: -5, .empty: 5, .stripe: -5]
 }
-
 
 
 

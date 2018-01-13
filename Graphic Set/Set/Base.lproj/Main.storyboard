@@ -69,7 +69,7 @@
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fMm-M9-5eb" customClass="SetView" customModule="Set" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="375" height="657"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -89,6 +89,7 @@
                         <outlet property="moreThreeButton" destination="928-DA-vmZ" id="MSd-CF-Baf"/>
                         <outlet property="newGameButton" destination="RdT-z7-v1x" id="XtH-Hn-CeX"/>
                         <outlet property="scorceLabel" destination="Jkg-Be-xme" id="aXz-Ue-nIr"/>
+                        <outlet property="setView" destination="fMm-M9-5eb" id="jic-kp-OgF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

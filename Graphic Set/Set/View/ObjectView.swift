@@ -8,7 +8,7 @@
 
 import UIKit
 
-class objectView: UIView {
+class ObjectView: UIView {
 
     private var shape: Card.Shape?
     private var color: Card.Color?
@@ -28,6 +28,7 @@ class objectView: UIView {
         self.shape = shape
         self.color = color
         self.fill = fill
+        backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
     }
     
     private var path: UIBezierPath {
@@ -51,17 +52,16 @@ class objectView: UIView {
         return UIBezierPath()
     }
     
-    
-    
-    
-    
     override func draw(_ rect: CGRect) {
         let shape = path
-        var objectColor: UIColor
+        path.addClip()
+   
+        
+        var objectColor: UIColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
         if let color = color {
             switch color {
             case .green:
-                objectColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+                objectColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
             case .purple:
                 objectColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
             case .red:
@@ -72,14 +72,30 @@ class objectView: UIView {
         if let fill = fill {
             switch fill {
             case .empty:
+                objectColor.setStroke()
+                shape.lineWidth = Boarder.unselectedBoarderWidth
                 shape.stroke()
             case .solid:
+                objectColor.setFill()
                 shape.fill()
             case .stripe:
-                break
+                objectColor.setStroke()
+                for x in stride(from: 0, to: bounds.width, by: bounds.width / 10) {
+                    let path = UIBezierPath()
+                    path.move(to: CGPoint(x: x, y: 0))
+                    path.addLine(to: CGPoint(x: 0, y: x))
+                    path.stroke()
+                }
+                for y in stride(from: 0, to: bounds.width, by: bounds.width / 10) {
+                    let path = UIBezierPath()
+                    path.move(to: CGPoint(x: y, y: bounds.height))
+                    path.addLine(to: CGPoint(x: bounds.width, y: y))
+                    path.stroke()
+                }
             }
         }
     }
-    
 
 }
+
+

@@ -41,6 +41,7 @@
 | :-------: | :---:|
 | [Friday Session1](https://www.youtube.com/watch?v=-UtIg4Lt7T8&index=3&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq) | Debugging and Xcode Tips and Tricks
 | [Friday Session2](https://www.youtube.com/watch?v=LvhXql24EOs&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq&index=12) | Github and Source Control Workflow
+| [Friday Session3](https://www.youtube.com/watch?v=s_SOYcYBnGU) | Instruments
 
 ## Reading 
 | Reading                             | Name |
@@ -55,9 +56,9 @@
 
 |  Assignment                               |  Solution | Date |        
 | ----------------------------------------  | --------- | -----|
-| [Concentration](assignment/Project_1.pdf) | [Concentration](.//Concentration) | Dec 29. 2017
-| [Set](assignment/Project_2.pdf) | [Set](.//Set) | Jan 10. 2018
-| [Graphical Set](assignment/Project_3.pdf) |  
+| [Concentration](assignment/Project_1.pdf) | [Concentration](./Concentration) | Dec 29. 2017
+| [Set](assignment/Project_2.pdf) | [Set](./Set) | Jan 10. 2018
+| [Graphical Set](assignment/Project_3.pdf) | [Graphical Set](./Graphic Set) |Jan 13. 2018
 | [Animated Set](assignment/Project_4.pdf) | 
 | [Image Gallery](assignment/Project_5.pdf) |  
 | [Persistent Image](assignment/Project_6.pdf) | 

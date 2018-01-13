@@ -18,7 +18,7 @@ struct SetEngine {
     }
     
     private(set) var cardOnTable = [Card]()
-    private var selectedCard = [Card]()
+    private(set) var selectedCard = [Card]()
     var hintCard = [Int]()
     
     mutating func chooseCard(at index: Int) {
@@ -26,6 +26,9 @@ struct SetEngine {
             selectedCard.remove(at: selectedCard.index(of: cardOnTable[index])!)
             return
         }
+        
+        selectedCard += [cardOnTable[index]]
+        
         if selectedCard.count == 3 {
             if isSet(on: selectedCard) {
                 for cards in selectedCard {
@@ -38,18 +41,29 @@ struct SetEngine {
                 score -= 1
             }
         }
-        selectedCard += [cardOnTable[index]]
+        
+    }
+    
+    mutating func shuffle() {
+        let number = cardOnTable.count / 3
+        for cards in cardOnTable {
+            deck.append(cards)
+        }
+        cardOnTable.removeAll()
+        for _ in 1...number {
+            draw()
+        }
     }
     
     mutating func isSet(on selectedCard: [Card]) -> Bool {
-      
+
         let color = Set(selectedCard.map{ $0.color }).count
         let shape = Set(selectedCard.map{ $0.shape }).count
         let number = Set(selectedCard.map{ $0.number }).count
         let fill = Set(selectedCard.map{ $0.fill }).count
         
-        
         return color != 2 && shape != 2 && number != 2 && fill != 2
+       
     }
     
     mutating func hint() {
