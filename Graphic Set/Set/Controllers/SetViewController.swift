@@ -39,6 +39,7 @@ class SetViewController: UIViewController {
             $0.removeFromSuperview()
         }
         cardsOnScreen.removeAll()
+        engine.shuffle()
         updateViewFromModel()
     }
     
