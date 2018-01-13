@@ -52,13 +52,11 @@
 
 ## Assignment 
 
-### sorry i am going to redo all the assignment after my final exam 
-
 |  Assignment                               |  Solution | Date |        
 | ----------------------------------------  | --------- | -----|
 | [Concentration](assignment/Project_1.pdf) | [Concentration](./Concentration) | Dec 29. 2017
 | [Set](assignment/Project_2.pdf) | [Set](./Set) | Jan 10. 2018
-| [Graphical Set](assignment/Project_3.pdf) | [Graphical Set](./Graphic Set) |Jan 13. 2018
+| [Graphical Set](assignment/Project_3.pdf) | [Graphical Set](./Graphic_Set) |Jan 13. 2018
 | [Animated Set](assignment/Project_4.pdf) | 
 | [Image Gallery](assignment/Project_5.pdf) |  
 | [Persistent Image](assignment/Project_6.pdf) | 
