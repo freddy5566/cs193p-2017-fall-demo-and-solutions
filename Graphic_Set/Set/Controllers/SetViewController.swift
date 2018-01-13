@@ -97,6 +97,14 @@ class SetViewController: UIViewController {
         
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        cardsOnScreen.forEach { $0.removeFromSuperview() }
+        cardsOnScreen.removeAll()
+        updateViewFromModel()
+    }
+    
     private func hiddenButtonIfNeed() {
         if engine.numberOfCard == 0 {
             moreThreeButton.isHidden = true
@@ -109,6 +117,7 @@ class SetViewController: UIViewController {
     private func updateViewFromModel() {
         let grid = SetGrid(for: setView.bounds, withNoOfFrames: engine.cardOnTable.count)
         for index in engine.cardOnTable.indices {
+            print(index, ": ", grid[index]!)
             cardsOnScreen.append(CardView(frame: grid[index]!, card: engine.cardOnTable[index])) 
             setView.addSubview(cardsOnScreen[index])
             cardsOnScreen[index].contentMode = .redraw
