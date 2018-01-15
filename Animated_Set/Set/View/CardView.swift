@@ -14,6 +14,7 @@ class CardView: UIView {
   
     var state: State.stateOfSeclection?
     var card: Card?
+    var isFaceUp: Bool
     
     private var color: Card.Color? {
         return card?.color
@@ -52,10 +53,12 @@ class CardView: UIView {
     }
     
     override init(frame: CGRect) {
+        isFaceUp = false
         super.init(frame: frame)
     }
     
     required init?(coder aDecoder: NSCoder) {
+        isFaceUp = false
         super.init(coder: aDecoder)
     }
     
@@ -112,17 +115,24 @@ class CardView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        drawObject()
-        let boarder = UIBezierPath(rect: CGRect(x: bounds.origin.x,
-                                                y: bounds.origin.y,
-                                                width: bounds.width,
-                                                height: bounds.height))
-        
-        boarder.lineWidth = state == State.stateOfSeclection.unselected ?
-                            Boarder.unselectedBoarderWidth :
-                            Boarder.selectedBoarderWidth
-        boarderColor.setStroke()
-        boarder.stroke()
+        if isFaceUp {
+            drawObject()
+            let boarder = UIBezierPath(rect: CGRect(x: bounds.origin.x,
+                                                    y: bounds.origin.y,
+                                                    width: bounds.width,
+                                                    height: bounds.height))
+            
+            boarder.lineWidth = state == State.stateOfSeclection.unselected ?
+                Boarder.unselectedBoarderWidth :
+                Boarder.selectedBoarderWidth
+            boarderColor.setStroke()
+            boarder.stroke()
+        } else {
+            let back = UIBezierPath(rect: bounds)
+            #colorLiteral(red: 0.423529923, green: 0.6870478392, blue: 0.8348321319, alpha: 1).setFill()
+            back.fill()
+        }
+       
     }
     
 

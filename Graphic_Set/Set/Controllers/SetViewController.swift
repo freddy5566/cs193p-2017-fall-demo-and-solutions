@@ -45,7 +45,7 @@ class SetViewController: UIViewController {
     
     @objc private func draw(_ recognizer: UISwipeGestureRecognizer) {
         
-        engine.draw()
+        engine.drawThreeToDeck()
         cardsOnScreen.forEach {
             $0.removeFromSuperview()
         }
@@ -58,7 +58,7 @@ class SetViewController: UIViewController {
     
     @IBAction private func moreThreeButtonPressed(_ sender: UIButton) {
         
-        engine.draw()
+        engine.drawThreeToDeck()
         cardsOnScreen.forEach {
             $0.removeFromSuperview()
         }
@@ -117,7 +117,7 @@ class SetViewController: UIViewController {
     private func updateViewFromModel() {
         let grid = SetGrid(for: setView.bounds, withNoOfFrames: engine.cardOnTable.count)
         for index in engine.cardOnTable.indices {
-            print(index, ": ", grid[index]!)
+            // print(index, ": ", grid[index]!)
             cardsOnScreen.append(CardView(frame: grid[index]!, card: engine.cardOnTable[index])) 
             setView.addSubview(cardsOnScreen[index])
             cardsOnScreen[index].contentMode = .redraw

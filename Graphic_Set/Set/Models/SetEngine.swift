@@ -31,18 +31,27 @@ struct SetEngine {
         
         if selectedCard.count == 3 {
             if isSet(on: selectedCard) {
-                for cards in selectedCard {
-                    cardOnTable.remove(at: cardOnTable.index(of: cards)!)
+                let drawCard = draw()
+                for index in selectedCard.indices {
+                    let removeIndex = cardOnTable.index(of: selectedCard[index])!
+                    if drawCard.count > 0 {
+                        cardOnTable[removeIndex] = drawCard[index]
+                    } else {
+                        cardOnTable.remove(at: removeIndex)
+                    }
+                    
                 }
-                selectedCard.removeAll()
-                draw()
+                
                 score += 1
+                
             } else {
                 score -= 1
             }
+            selectedCard.removeAll()
         }
         
     }
+    
     
     mutating func shuffle() {
         let number = cardOnTable.count / 3
@@ -51,19 +60,19 @@ struct SetEngine {
         }
         cardOnTable.removeAll()
         for _ in 1...number {
-            draw()
+            cardOnTable += draw()
         }
     }
     
     mutating func isSet(on selectedCard: [Card]) -> Bool {
-
+        
         let color = Set(selectedCard.map{ $0.color }).count
         let shape = Set(selectedCard.map{ $0.shape }).count
         let number = Set(selectedCard.map{ $0.number }).count
         let fill = Set(selectedCard.map{ $0.fill }).count
         
         return color != 2 && shape != 2 && number != 2 && fill != 2
-       
+        
     }
     
     mutating func hint() {
@@ -80,17 +89,27 @@ struct SetEngine {
         }
     }
     
-    mutating func draw() {
-        if deck.count > 0 {
-            for _ in 1...3 {
-                cardOnTable += [deck.remove(at: deck.randomIndex)]
-            }
+    mutating func drawThreeToDeck() {
+        let card = draw()
+        for cards in card {
+            cardOnTable.append(cards)
         }
+    }
+    
+    private mutating func draw() -> [Card]{
+        if deck.count > 0 {
+            var drawCards = [Card]()
+            for _ in 1...3 {
+                drawCards.append(deck.remove(at: deck.randomIndex))
+            }
+            return drawCards
+        }
+        return []
     }
     
     private mutating func initDeck() {
         for _ in 1...4 {
-            draw()
+            drawThreeToDeck()
         }
     }
     

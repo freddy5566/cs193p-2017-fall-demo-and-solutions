@@ -14,6 +14,20 @@ struct SetGrid {
     private var numberOfFrames: Int  { didSet { calculateGrid() } }
     static var idealAspectRatio: CGFloat = 0.7
     
+    var row: Int {
+        if let rows = bestGridDimensions?.rows {
+            return rows
+        }
+        return 0
+    }
+    
+    var col: Int {
+        if let rows = bestGridDimensions?.cols {
+            return rows
+        }
+        return 0
+    }
+    
     init(for bounds: CGRect, withNoOfFrames: Int, forIdeal aspectRatio: CGFloat = SetGrid.idealAspectRatio) {
         self.bounds = bounds
         self.numberOfFrames = withNoOfFrames
@@ -47,9 +61,11 @@ struct SetGrid {
     }
     
     private var bestGridDimensions: GridDimensions?
+    
     private mutating func calculateGridDimensions() {
         for cols in 1...numberOfFrames {
             let rows = numberOfFrames % cols == 0 ? numberOfFrames / cols: numberOfFrames/cols + 1
+         
             let calculatedframeDimension = GridDimensions(
                 cols: cols,
                 rows: rows,
@@ -66,13 +82,16 @@ struct SetGrid {
     }
     
     private var cellFrames: [CGRect] = []
+    
     private mutating func calculateGrid() {
         var grid = [CGRect]()
         calculateGridDimensions()
+        
         guard let bestGridDimensions = bestGridDimensions else {
             grid = []
             return
         }
+        
         for row in 0..<bestGridDimensions.rows {
             for col in 0..<bestGridDimensions.cols {
                 let origin = CGPoint(x: CGFloat(col) * bestGridDimensions.frameSize.width, y: CGFloat(row) * bestGridDimensions.frameSize.height)
