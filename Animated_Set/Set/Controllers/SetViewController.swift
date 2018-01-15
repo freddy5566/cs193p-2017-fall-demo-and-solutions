@@ -46,6 +46,18 @@ class SetViewController: UIViewController {
     @objc private func draw(_ recognizer: UISwipeGestureRecognizer) {
         
         engine.drawThreeToDeck()
+        
+        let indxOfLastThreeCardBegine = engine.cardOnTable.count - 2
+        
+        let grid = SetGrid(for: setView.frame, withNoOfFrames: engine.cardOnTable.count)
+        for index in indxOfLastThreeCardBegine..<engine.cardOnTable.count {
+            
+            
+            
+        }
+        
+        
+        
         cardsOnScreen.forEach {
             $0.removeFromSuperview()
         }
