@@ -18,6 +18,7 @@
 		3BBE6DE51FF7D6AC001EC047 /* SetEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE6DE41FF7D6AC001EC047 /* SetEngine.swift */; };
 		3BBE6DEA2006236A001EC047 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE6DE92006236A001EC047 /* CardView.swift */; };
 		3BBE6DEC20062BA1001EC047 /* SetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE6DEB20062BA1001EC047 /* SetView.swift */; };
+		3BBE6DEE200F3715001EC047 /* Flyaway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE6DED200F3715001EC047 /* Flyaway.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		3BBE6DE41FF7D6AC001EC047 /* SetEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetEngine.swift; sourceTree = "<group>"; };
 		3BBE6DE92006236A001EC047 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		3BBE6DEB20062BA1001EC047 /* SetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetView.swift; sourceTree = "<group>"; };
+		3BBE6DED200F3715001EC047 /* Flyaway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flyaway.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				3BBE6DE92006236A001EC047 /* CardView.swift */,
 				3B41569320085FCE001BEF2E /* ObjectView.swift */,
 				3B06FCE620087850005B8958 /* SetGrid.swift */,
+				3BBE6DED200F3715001EC047 /* Flyaway.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 				3BBE6DE31FF7D319001EC047 /* Card.swift in Sources */,
 				3BBE6DCD1FF7CE25001EC047 /* AppDelegate.swift in Sources */,
 				3BBE6DEA2006236A001EC047 /* CardView.swift in Sources */,
+				3BBE6DEE200F3715001EC047 /* Flyaway.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

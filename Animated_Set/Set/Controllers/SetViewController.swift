@@ -39,7 +39,7 @@ class SetViewController: UIViewController {
                               duration: 0.7,
                               options: .allowAnimatedContent,
                               animations: {
-                                
+                                self.moreThreeButton.isUserInteractionEnabled = false
                                 let scaleY = grid[index]!.height / self.cardsOnScreen[index].frame.height
                                 let scaleX = grid[index]!.width / self.cardsOnScreen[index].frame.width
                                 self.cardsOnScreen[index].transform = CGAffineTransform(scaleX: scaleX, y: scaleY)
@@ -48,9 +48,11 @@ class SetViewController: UIViewController {
                               completion: { finished in
                                 UIView.animate(withDuration: 0.5,
                                                animations: {
-                                                
                                                 self.cardsOnScreen[index].frame = grid[index]!
                                                 self.cardsOnScreen[index].setNeedsDisplay(grid[index]!)
+                                                if index == self.cardsOnScreen.endIndex - 1 {
+                                                    self.moreThreeButton.isUserInteractionEnabled = false
+                                                }
                                 })
             })
         }
@@ -138,11 +140,12 @@ class SetViewController: UIViewController {
             let gridIndex = cardsOnScreen.index(of: cardsNeedAnimated[timeOfAnimate])
             delayTime = 0.1 * Double(timeOfAnimate)
             
-            UIView.animate(withDuration: 0.4,
+            UIView.animate(withDuration: 0.7,
                            delay: delayTime,
                            options: .curveEaseInOut,
                            animations: {
                             // print(self.cardsNeedAnimated[timeOfAnimate].isFaceUp)
+                            self.moreThreeButton.isUserInteractionEnabled = false
                             self.cardsNeedAnimated[timeOfAnimate].frame = grid[gridIndex!]!
                             
             },
@@ -151,10 +154,13 @@ class SetViewController: UIViewController {
                                               duration: 0.2,
                                               options: .transitionFlipFromLeft,
                                               animations: {
-                                                
                                                 self.cardsNeedAnimated[timeOfAnimate].isFaceUp = true
                                                 self.cardsNeedAnimated[timeOfAnimate].setNeedsDisplay()
                                                 
+                                            }, completion: { finisehed in
+                                                if timeOfAnimate == self.cardsNeedAnimated.endIndex - 1 {
+                                                    self.moreThreeButton.isUserInteractionEnabled = true
+                                                }
                             })
             })
         }
@@ -173,6 +179,99 @@ class SetViewController: UIViewController {
             } else {
                 moreThreeButton.isHidden = false
             }
+        }
+    }
+    
+    lazy var animator = UIDynamicAnimator(referenceView: view)
+    
+    private func flayaway() {
+        let flyBehavior = Flyaway(in: animator)
+        var flayCards = [CardView]()
+        var flipCards = [CardView]()
+        let dealToStView = setView.convert(scorceLabel.bounds, from: scorceLabel)
+        selectedCard.forEach {
+            let index = cardsOnScreen.index(of: $0)
+            let card = CardView(frame: $0.frame, card: engine.cardOnTable[index!])
+            card.isFaceUp = true
+            let flipCard = CardView(frame: dealToStView, card: engine.cardOnTable[index!])
+            flipCard.isFaceUp = true
+            flayCards.append(card)
+            flipCards.append(flipCard)
+            setView.addSubview(flipCard)
+            setView.addSubview(card)
+        }
+       
+        selectedCard.forEach() {
+            $0.alpha = 0
+        }
+        
+        flayCards.forEach() {
+            flyBehavior.addItem($0)
+        }
+        
+        
+        
+        for cards in flayCards {
+            UIView.animate(withDuration: 0.7,
+                           animations: {
+                            cards.alpha = 0
+                            flipCards.forEach {
+                                self.setView.addSubview($0)
+                            }
+            },
+                           completion: { finished in
+                            UIView.transition(with: cards,
+                                              duration: 1,
+                                              options: .transitionFlipFromLeft,
+                                              animations: {
+                                                flipCards.forEach {
+                                                    $0.isFaceUp = false
+                                                    $0.alpha = 1
+                                                }
+                                        },
+                                              completion: { finished in
+                                                cards.removeFromSuperview()
+                                                flipCards.forEach {
+                                                    $0.removeFromSuperview()
+                                                }
+                                                
+                            })
+            })
+        }
+        putCardIntoScreen()
+       
+    }
+    
+   private func putCardIntoScreen() {
+        selectedCard.forEach {
+            $0.alpha = 1
+        }
+        
+        var isNeedSmall = false
+        let dealToStView = setView.convert(moreThreeButton.bounds, from: moreThreeButton)
+        if cardsNeedAnimated.count != 0 { cardsNeedAnimated = [] }
+        
+        selectedCard.forEach {
+            
+            let index = cardsOnScreen.index(of: $0)!
+            let card = cardsOnScreen[index]
+            if engine.deck.count > 0 || engine.cardOnTable.count == cardsOnScreen.count {
+                cardsOnScreen[index] = CardView(frame: dealToStView, card: engine.cardOnTable[index])
+                card.removeFromSuperview()
+                setView.addSubview(cardsOnScreen[index])
+                cardsOnScreen[index].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapCard(_:))))
+                cardsNeedAnimated.append(cardsOnScreen[index])
+            } else {
+                $0.removeFromSuperview()
+                cardsOnScreen.remove(at: cardsOnScreen.index(of: $0)!)
+                isNeedSmall = true
+            }
+        }
+        
+        if isNeedSmall {
+            smallCardOnScreen()
+        } else {
+            flyIn()
         }
     }
     
@@ -198,29 +297,8 @@ class SetViewController: UIViewController {
         
         if selectedCard.count == 3  {
             if isSet {
-                var isNeedSmall = false
-                let dealToStView = setView.convert(moreThreeButton.bounds, from: moreThreeButton)
-                if cardsNeedAnimated.count != 0 { cardsNeedAnimated = [] }
-                selectedCard.forEach {
-                    let index = cardsOnScreen.index(of: $0)!
-                    let card = cardsOnScreen[index]
-                    if engine.deck.count > 0 || engine.cardOnTable.count == cardsOnScreen.count {
-                        cardsOnScreen[index] = CardView(frame: dealToStView, card: engine.cardOnTable[index])
-                        card.removeFromSuperview()
-                        setView.addSubview(cardsOnScreen[index])
-                        cardsOnScreen[index].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapCard(_:))))
-                        cardsNeedAnimated.append(cardsOnScreen[index])
-                    } else {
-                        $0.removeFromSuperview()
-                        cardsOnScreen.remove(at: cardsOnScreen.index(of: $0)!)
-                        isNeedSmall = true
-                    }
-                }
-                if isNeedSmall {
-                    smallCardOnScreen()
-                } else {
-                    flyIn()
-                }
+                flayaway()
+                
             } else {
                 cardsOnScreen.forEach() {
                     $0.state = State.stateOfSeclection.unselected
