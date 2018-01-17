@@ -15,14 +15,8 @@ class SetViewController: UIViewController {
     private var hintedCard = [CardView]()
     private var cardsOnScreen = [CardView]()
     private var cardsNeedAnimated = [CardView]()
-    @IBOutlet weak var setView: SetView! {
-        didSet {
-            let swipe = UISwipeGestureRecognizer(target: self, action: #selector(draw(_:)))
-            swipe.direction = [.left, .right]
-            setView.addGestureRecognizer(swipe)
-            setView.addGestureRecognizer(UIRotationGestureRecognizer(target: self, action: #selector(shuffle(_:))))
-        }
-    }
+    @IBOutlet weak var setView: SetView!
+       
     
     @IBOutlet weak private var moreThreeButton: UIButton!
     @IBOutlet weak private var hintButton: UIButton!
@@ -34,47 +28,48 @@ class SetViewController: UIViewController {
         scorceLabel.text = "\(engine.score)"
     }
     
-    @objc private func shuffle(_ recognizer: UIRotationGestureRecognizer) {
-        cardsOnScreen.forEach {
-            $0.removeFromSuperview()
-        }
-        cardsOnScreen.removeAll()
-        engine.shuffle()
-        updateViewFromModel()
+    @IBAction private func moreThreeButtonPressed(_ sender: UIButton) {
+        drawCard()
     }
     
-    @objc private func draw(_ recognizer: UISwipeGestureRecognizer) {
+    private func drawCard() {
         
         engine.drawThreeToDeck()
-        
-        let indxOfLastThreeCardBegine = engine.cardOnTable.count - 2
+        cardsNeedAnimated.removeAll()
+        let indxOfLastThreeCardBegine = engine.cardOnTable.count - 3
         
         let grid = SetGrid(for: setView.frame, withNoOfFrames: engine.cardOnTable.count)
+        
+        for index in 0..<indxOfLastThreeCardBegine  {
+            UIView.transition(with: cardsOnScreen[index],
+                              duration: 0.7,
+                              options: .allowAnimatedContent,
+                              animations: {
+                                
+                                let scaleY = grid[index]!.height / self.cardsOnScreen[index].frame.height
+                                let scaleX = grid[index]!.width / self.cardsOnScreen[index].frame.width
+                                self.cardsOnScreen[index].transform = CGAffineTransform(scaleX: scaleX, y: scaleY)
+            },
+                              completion: { finished in
+                                UIView.animate(withDuration: 0.5,
+                                               animations: {
+                                                
+                                                self.cardsOnScreen[index].frame = grid[index]!
+                                                self.cardsOnScreen[index].setNeedsDisplay(grid[index]!)
+                                })
+            })
+        }
+        
+        let dealToStView = setView.convert(moreThreeButton.bounds, from: moreThreeButton)
         for index in indxOfLastThreeCardBegine..<engine.cardOnTable.count {
-            
-            
-            
+            let cards = CardView(frame: dealToStView, card: engine.cardOnTable[index])
+            cards.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapCard(_:))))
+            setView.addSubview(cards)
+            cardsNeedAnimated.append(cards)
+            cardsOnScreen.append(cards)
         }
+        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(flyIn), userInfo: nil, repeats: false)
         
-        
-        
-        cardsOnScreen.forEach {
-            $0.removeFromSuperview()
-        }
-        cardsOnScreen.removeAll()
-        updateViewFromModel()
-        
-    }
-    
-    
-    @IBAction private func moreThreeButtonPressed(_ sender: UIButton) {
-        
-        engine.drawThreeToDeck()
-        cardsOnScreen.forEach {
-            $0.removeFromSuperview()
-        }
-        cardsOnScreen.removeAll()
-        updateViewFromModel()
     }
     
     @IBAction private func hintButtonPressed(_ sender: UIButton) {
@@ -87,6 +82,8 @@ class SetViewController: UIViewController {
             cardsOnScreen[engine.hintCard[index]].setNeedsDisplay()
         }
     }
+    
+    
     
     @IBAction private func newGameButtonPressed(_ sender: UIButton) {
         engine = SetEngine()
@@ -113,8 +110,6 @@ class SetViewController: UIViewController {
 //        updateViewFromModel()
 //    }
 
-    
-    
     private func updateViewFromModel() {
         if cardsNeedAnimated.count != 0 { cardsNeedAnimated = [] }
         for index in engine.cardOnTable.indices {
@@ -122,14 +117,13 @@ class SetViewController: UIViewController {
             let dealToStView = setView.convert(moreThreeButton.bounds, from: moreThreeButton)
             cardsOnScreen.append(CardView(frame: dealToStView, card: engine.cardOnTable[index]))
             setView.addSubview(cardsOnScreen[index])
-            cardsOnScreen[index].contentMode = .redraw
             cardsOnScreen[index].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapCard(_:))))
             cardsNeedAnimated.append(cardsOnScreen[index])
         }
         flyIn()
     }
     
-    private func flyIn() {
+    @objc private func flyIn() {
         
         let grid = SetGrid(for: setView.bounds, withNoOfFrames: engine.cardOnTable.count)
 
@@ -149,6 +143,7 @@ class SetViewController: UIViewController {
                                               duration: 0.2,
                                               options: .transitionFlipFromLeft,
                                               animations: {
+                                                
                                                 self.cardsNeedAnimated[timeOfAnimate].isFaceUp = true
                                                 self.cardsNeedAnimated[timeOfAnimate].setNeedsDisplay()
                             })

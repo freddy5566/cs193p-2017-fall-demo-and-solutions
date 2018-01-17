@@ -87,11 +87,15 @@ class CardView: UIView {
     }
     
     private func drawObject() {
+        for object in subviews {
+            object.removeFromSuperview()
+        }
         if let number = number?.rawValue {
             for index in 0..<number {
                 if let shape = shape, let color = color, let fill = fill {
                     
                     let object = ObjectView(frame: objectFrame[index], shape: shape, color: color, fill: fill)
+                    
                     addSubview(object)
                 }
             }
@@ -115,6 +119,7 @@ class CardView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
+        
         if isFaceUp {
             drawObject()
             let boarder = UIBezierPath(rect: CGRect(x: bounds.origin.x,
