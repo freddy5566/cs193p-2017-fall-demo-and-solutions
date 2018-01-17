@@ -34,7 +34,8 @@ struct SetEngine {
                 let drawCard = draw()
                 for index in selectedCard.indices {
                     let removeIndex = cardOnTable.index(of: selectedCard[index])!
-                    if drawCard.count > 0 {
+                   
+                    if !drawCard.isEmpty {
                         cardOnTable[removeIndex] = drawCard[index]
                     } else {
                         cardOnTable.remove(at: removeIndex)
@@ -44,8 +45,9 @@ struct SetEngine {
             } else {
                 score -= 1
             }
+            
         }
-        
+    
     }
     
     mutating func shuffle() {

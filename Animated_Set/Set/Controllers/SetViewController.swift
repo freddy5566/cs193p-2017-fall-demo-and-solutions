@@ -32,15 +32,9 @@ class SetViewController: UIViewController {
         drawCard()
     }
     
-    private func drawCard() {
-        
-        engine.drawThreeToDeck()
-        cardsNeedAnimated.removeAll()
-        let indxOfLastThreeCardBegine = engine.cardOnTable.count - 3
-        
+    private func smallCardOnScreen() {
         let grid = SetGrid(for: setView.frame, withNoOfFrames: engine.cardOnTable.count)
-        
-        for index in 0..<indxOfLastThreeCardBegine  {
+        for index in cardsOnScreen.indices  {
             UIView.transition(with: cardsOnScreen[index],
                               duration: 0.7,
                               options: .allowAnimatedContent,
@@ -49,6 +43,7 @@ class SetViewController: UIViewController {
                                 let scaleY = grid[index]!.height / self.cardsOnScreen[index].frame.height
                                 let scaleX = grid[index]!.width / self.cardsOnScreen[index].frame.width
                                 self.cardsOnScreen[index].transform = CGAffineTransform(scaleX: scaleX, y: scaleY)
+                                
             },
                               completion: { finished in
                                 UIView.animate(withDuration: 0.5,
@@ -59,7 +54,15 @@ class SetViewController: UIViewController {
                                 })
             })
         }
-        
+    }
+    
+    private func drawCard() {
+       
+        engine.drawThreeToDeck()
+        smallCardOnScreen()
+        cardsNeedAnimated.removeAll()
+        let indxOfLastThreeCardBegine = engine.cardOnTable.count - 3
+   
         let dealToStView = setView.convert(moreThreeButton.bounds, from: moreThreeButton)
         for index in indxOfLastThreeCardBegine..<engine.cardOnTable.count {
             let cards = CardView(frame: dealToStView, card: engine.cardOnTable[index])
@@ -82,8 +85,21 @@ class SetViewController: UIViewController {
             cardsOnScreen[engine.hintCard[index]].setNeedsDisplay()
         }
     }
+  
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let grid = SetGrid(for: setView.bounds, withNoOfFrames: engine.cardOnTable.count)
+        for index in cardsOnScreen.indices {
+            cardsOnScreen[index].frame = grid[index]!
+            cardsOnScreen[index].setNeedsDisplay()
+        }
+    }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        updateViewFromModel()
+    }
     
     @IBAction private func newGameButtonPressed(_ sender: UIButton) {
         engine = SetEngine()
@@ -96,22 +112,12 @@ class SetViewController: UIViewController {
         selectedCard.removeAll()
         hintedCard.removeAll()
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        updateViewFromModel()
-    }
-    
-//    override func viewDidLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-//
-//        cardsOnScreen.forEach { $0.removeFromSuperview() }
-//        cardsOnScreen.removeAll()
-//        updateViewFromModel()
-//    }
+
+
 
     private func updateViewFromModel() {
-        if cardsNeedAnimated.count != 0 { cardsNeedAnimated = [] }
+        cardsOnScreen.removeAll()
+        cardsNeedAnimated.removeAll()
         for index in engine.cardOnTable.indices {
             // print(index, ": ", grid[index]!)
             let dealToStView = setView.convert(moreThreeButton.bounds, from: moreThreeButton)
@@ -136,7 +142,9 @@ class SetViewController: UIViewController {
                            delay: delayTime,
                            options: .curveEaseInOut,
                            animations: {
+                            // print(self.cardsNeedAnimated[timeOfAnimate].isFaceUp)
                             self.cardsNeedAnimated[timeOfAnimate].frame = grid[gridIndex!]!
+                            
             },
                            completion: { finisehed in
                             UIView.transition(with: self.cardsNeedAnimated[timeOfAnimate],
@@ -146,20 +154,17 @@ class SetViewController: UIViewController {
                                                 
                                                 self.cardsNeedAnimated[timeOfAnimate].isFaceUp = true
                                                 self.cardsNeedAnimated[timeOfAnimate].setNeedsDisplay()
+                                                
                             })
             })
         }
-
+        
     }
-    
-    
     
     private var isSet: Bool {
        
         return engine.isSet(on: engine.selectedCard)
     }
-    
-    
     
     private var engine = SetEngine() {
         didSet {
@@ -173,7 +178,7 @@ class SetViewController: UIViewController {
     
     @objc private func tapCard(_ recognizer: UITapGestureRecognizer) {
         guard let tappedCard = recognizer.view as? CardView else { return }
-        print(tappedCard.card!)
+        // print(tappedCard.card!)
         engine.chooseCard(at: cardsOnScreen.index(of: tappedCard)!)
         
         if let state = tappedCard.state {
@@ -193,30 +198,33 @@ class SetViewController: UIViewController {
         
         if selectedCard.count == 3  {
             if isSet {
+                var isNeedSmall = false
                 let dealToStView = setView.convert(moreThreeButton.bounds, from: moreThreeButton)
                 if cardsNeedAnimated.count != 0 { cardsNeedAnimated = [] }
                 selectedCard.forEach {
                     let index = cardsOnScreen.index(of: $0)!
                     let card = cardsOnScreen[index]
-                    if engine.deck.count > 0 {
+                    if engine.deck.count > 0 || engine.cardOnTable.count == cardsOnScreen.count {
                         cardsOnScreen[index] = CardView(frame: dealToStView, card: engine.cardOnTable[index])
                         card.removeFromSuperview()
                         setView.addSubview(cardsOnScreen[index])
-                        cardsOnScreen[index].contentMode = .redraw
                         cardsOnScreen[index].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapCard(_:))))
                         cardsNeedAnimated.append(cardsOnScreen[index])
                     } else {
                         $0.removeFromSuperview()
-                        
+                        cardsOnScreen.remove(at: cardsOnScreen.index(of: $0)!)
+                        isNeedSmall = true
                     }
                 }
-                ifSetFlayIn()
-               
+                if isNeedSmall {
+                    smallCardOnScreen()
+                } else {
+                    flyIn()
+                }
             } else {
                 cardsOnScreen.forEach() {
                     $0.state = State.stateOfSeclection.unselected
                     $0.setNeedsDisplay()
-                    print("cool")
                 }
             }
             selectedCard.removeAll()
@@ -226,19 +234,6 @@ class SetViewController: UIViewController {
  
     }
     
-    
-    private func ifSetFlayIn() {
-        if engine.deck.count > 0 {
-            flyIn()
-        } else {
-            cardsOnScreen.forEach {
-                $0.removeFromSuperview()
-            }
-            cardsOnScreen.removeAll()
-            updateViewFromModel()
-        }
-    }
-
     
 }
 
