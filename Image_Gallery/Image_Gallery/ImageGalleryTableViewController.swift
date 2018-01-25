@@ -35,14 +35,31 @@ class ImageGalleryTableViewController: UITableViewController {
         return ""
     }
     
+//    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+//        guard let header = view as? UITableViewHeaderFooterView else {
+//            print("header error")
+//            return
+//        }
+//        if section == 1 {
+//            print("section 1")
+//            header.textLabel?.text = "Recently Deleted"
+//            header.textLabel?.font = UIFont.boldSystemFont(ofSize: 40)
+//            header.textLabel?.frame = header.frame
+//            header.textLabel?.textAlignment = .center
+//        }
+//    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GalleryTableCell", for: indexPath)
-        cell.textLabel?.text = gallerys[indexPath.section][indexPath.row]
         
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GalleryTableCell", for: indexPath) as? GalleryTableViewCell
+        
+        cell?.textField.text = gallerys[indexPath.section][indexPath.row]
+        
+      
+        return cell!
     
     }
- 
+    
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -62,10 +79,20 @@ class ImageGalleryTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let reDelete = UISwipeActionsConfiguration() 
         
-        
-        return reDelete
+        if indexPath.section == 1 {
+            let reDelete = UIContextualAction(style: .normal, title: "redelete") { (action, view, completionHandler) in
+                let reDeleteItem = self.galleryRemove.remove(at: indexPath.row)
+                self.galleryInsert.append(reDeleteItem)
+                completionHandler(true)
+                self.tableView.reloadData()
+            }
+            reDelete.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+            
+            return UISwipeActionsConfiguration(actions: [reDelete])
+        } else {
+            return nil
+        }
     }
     
     // MARK: - action
@@ -74,6 +101,20 @@ class ImageGalleryTableViewController: UITableViewController {
         galleryInsert += ["Untitled".madeUnique(withRespectTo: galleryInsert)]
         tableView.reloadData()
     }
+    
+    // MARK: - life cycle
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        splitViewController?.preferredDisplayMode = .primaryOverlay
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.separatorStyle = .singleLine
+    }
+    
+    // MARK: - storyBoard
+    
     
 
     /*

@@ -31,13 +31,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GalleryTableCell" id="fSA-hm-52i">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GalleryTableCell" id="fSA-hm-52i" customClass="GalleryTableViewCell" customModule="Image_Gallery" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fSA-hm-52i" id="Okd-8S-y6P">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="tOF-ew-3Tj">
+                                            <rect key="frame" x="20" y="20" width="280" height="3.5"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="tOF-ew-3Tj" firstAttribute="top" secondItem="Okd-8S-y6P" secondAttribute="top" constant="20" symbolic="YES" id="eJ1-Ji-NW6"/>
+                                        <constraint firstAttribute="trailing" secondItem="tOF-ew-3Tj" secondAttribute="trailing" constant="20" symbolic="YES" id="fzj-oZ-nT5"/>
+                                        <constraint firstItem="tOF-ew-3Tj" firstAttribute="leading" secondItem="Okd-8S-y6P" secondAttribute="leading" constant="20" symbolic="YES" id="gMG-f8-Npj"/>
+                                        <constraint firstAttribute="bottom" secondItem="tOF-ew-3Tj" secondAttribute="bottom" constant="20" symbolic="YES" id="yyF-rj-tS8"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="textField" destination="tOF-ew-3Tj" id="Ptw-tM-gb8"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -55,7 +72,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SiL-Su-lAf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="531" y="-962"/>
+            <point key="canvasLocation" x="530.46875" y="-962.10937499999989"/>
         </scene>
         <!--Collection View Controller-->
         <scene sceneID="TCE-fH-5kc">
