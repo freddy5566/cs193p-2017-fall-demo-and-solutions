@@ -32,8 +32,9 @@ class GalleryCollectionViewCell: UICollectionViewCell {
             DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                 let urlContents = try? Data(contentsOf: url)
                 DispatchQueue.main.async {
-                    if let imageData = urlContents, url == self?.imageURL {
+                    if let imageData = urlContents {
                         self?.image = UIImage(data: imageData)
+                        print("ImageView set the data")
                     }
                 }
             }

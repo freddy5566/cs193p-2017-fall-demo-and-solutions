@@ -13,7 +13,6 @@ class GalleryCollectionViewController: UICollectionViewController, UIDropInterac
 
     override func viewDidLoad() {
         super.viewDidLoad()
-   
         collectionView?.addInteraction(UIDropInteraction(delegate: self))
     }
     
@@ -25,7 +24,7 @@ class GalleryCollectionViewController: UICollectionViewController, UIDropInterac
     
     // MARK: - drag and drop
     func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
-        return session.canLoadObjects(ofClass: NSURL.self)
+        return session.canLoadObjects(ofClass: NSURL.self) && session.canLoadObjects(ofClass: UIImage.self)
     }
     
     func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
@@ -35,7 +34,7 @@ class GalleryCollectionViewController: UICollectionViewController, UIDropInterac
     func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
         session.loadObjects(ofClass: NSURL.self) { nsurls in
             if let  url = nsurls.first as? URL {
-                self.galleryImageURL.append(url)
+                self.galleryImageURL.append(url.imageURL)
             }
         }
     }
@@ -60,11 +59,13 @@ class GalleryCollectionViewController: UICollectionViewController, UIDropInterac
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return galleryImageURL.count
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GalleryCollectionCell", for: indexPath) as! GalleryCollectionViewCell
-        cell.imageURL = galleryImageURL[indexPath.row]
+        
+        cell.imageURL = galleryImageURL[indexPath.item]
         print(galleryImageURL.count)
+        
         return cell
     }
 
