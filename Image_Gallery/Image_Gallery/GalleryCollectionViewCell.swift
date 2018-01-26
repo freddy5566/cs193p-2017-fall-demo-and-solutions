@@ -12,9 +12,7 @@ class GalleryCollectionViewCell: UICollectionViewCell {
     
     var imageURL: URL? {
         didSet {
-            image = nil
-            // check if on screen
-            if self.window != nil {
+            if imageURL != nil && (oldValue != imageURL) {
                 fetchImage()
             }
         }
@@ -26,7 +24,6 @@ class GalleryCollectionViewCell: UICollectionViewCell {
         }
         set {
             imageView.image = newValue
-            imageView.sizeToFit()
         }
     }
     
@@ -46,6 +43,7 @@ class GalleryCollectionViewCell: UICollectionViewCell {
     // MARK: - storyboard
     
     @IBOutlet weak var imageView: UIImageView!
+    
     
   
     
