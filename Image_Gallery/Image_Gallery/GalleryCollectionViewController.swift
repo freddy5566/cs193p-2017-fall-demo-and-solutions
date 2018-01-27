@@ -8,12 +8,13 @@
 
 import UIKit
 
-class GalleryCollectionViewController: UICollectionViewController, UIDropInteractionDelegate {
-    
+class GalleryCollectionViewController: UICollectionViewController, UICollectionViewDragDelegate, UICollectionViewDropDelegate {
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView?.addInteraction(UIDropInteraction(delegate: self))
+        collectionView?.dropDelegate = self
+        collectionView?.dragDelegate = self
     }
     
     private var galleryImageURL = [URL]() {
@@ -23,22 +24,81 @@ class GalleryCollectionViewController: UICollectionViewController, UIDropInterac
     }
     
     // MARK: - drag and drop
-    func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
-        return session.canLoadObjects(ofClass: NSURL.self) && session.canLoadObjects(ofClass: UIImage.self)
+    
+    func collectionView(_ collectionView: UICollectionView, canHandle session: UIDropSession) -> Bool {
+          return session.canLoadObjects(ofClass: NSURL.self)
     }
     
-    func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
-        return UIDropProposal(operation: .copy)
+    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        session.localContext = collectionView
+        return dragItem(at: indexPath)
+        
     }
     
-    func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
-        session.loadObjects(ofClass: NSURL.self) { nsurls in
-            if let  url = nsurls.first as? URL {
-                self.galleryImageURL.append(url.imageURL)
+    func collectionView(_ collectionView: UICollectionView, itemsForAddingTo session: UIDragSession, at indexPath: IndexPath, point: CGPoint) -> [UIDragItem] {
+        return dragItem(at: indexPath)
+    }
+    
+    private func dragItem(at indexPath: IndexPath) -> [UIDragItem] {
+        if let galleryImageURL = (collectionView?.cellForItem(at: indexPath) as? GalleryCollectionViewCell)?.imageURL {
+            let dragItem = UIDragItem(itemProvider: NSItemProvider(object: galleryImageURL as NSItemProviderWriting))
+            dragItem.localObject = dragItem
+            return [dragItem]
+        }
+        return []
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        dropSessionDidUpdate session: UIDropSession,
+                        withDestinationIndexPath destinationIndexPath: IndexPath?)
+        -> UICollectionViewDropProposal {
+        
+        let isSelf = (session.localDragSession?.localContext as? UICollectionView) == collectionView
+        return UICollectionViewDropProposal(operation: isSelf ? .move : .copy, intent: .insertAtDestinationIndexPath)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        performDropWith coordinator: UICollectionViewDropCoordinator) {
+        
+        let destionationIndexPath = coordinator.destinationIndexPath ?? IndexPath(item: 0, section: 0)
+        for item in coordinator.items {
+            if let sourceIndexPath = item.sourceIndexPath {
+                if let url = item.dragItem.localObject as? URL {
+                    collectionView.performBatchUpdates({
+                        galleryImageURL.remove(at: sourceIndexPath.item)
+                        galleryImageURL.insert(url, at: destionationIndexPath.item)
+                        collectionView.deleteItems(at: [sourceIndexPath])
+                        collectionView.insertItems(at: [destionationIndexPath])
+                    })
+                    coordinator.drop(item.dragItem,
+                                     toItemAt: destionationIndexPath)
+                }
+            } else {
+                let placeHolderContext = coordinator.drop(item.dragItem,
+                                                          to: UICollectionViewDropPlaceholder(insertionIndexPath: destionationIndexPath,
+                                                                                              reuseIdentifier: "GalleryCircleCell"))
+                
+                item.dragItem.itemProvider.loadObject(ofClass: NSURL.self) { (provider, error) in
+                    DispatchQueue.main.async {
+                        if let url = provider as? URL {
+                            
+                            placeHolderContext.commitInsertion(dataSourceUpdates: { insertionIndexPath in
+                                self.galleryImageURL.insert(url.imageURL, at: insertionIndexPath.item)
+                                
+                            })
+                        } else {
+                            placeHolderContext.deletePlaceholder()
+                        }
+                    }
+                    
+                }
             }
         }
     }
+    
+    
 
+   
     /*
     // MARK: - Navigation
 
@@ -101,3 +161,4 @@ class GalleryCollectionViewController: UICollectionViewController, UIDropInterac
     */
 
 }
+

@@ -18,7 +18,7 @@ class GalleryCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    private var image: UIImage? {
+    private(set) var image: UIImage? {
         get {
             return imageView?.image
         }

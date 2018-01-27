@@ -34,21 +34,7 @@ class ImageGalleryTableViewController: UITableViewController {
         }
         return ""
     }
-    
-//    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-//        guard let header = view as? UITableViewHeaderFooterView else {
-//            print("header error")
-//            return
-//        }
-//        if section == 1 {
-//            print("section 1")
-//            header.textLabel?.text = "Recently Deleted"
-//            header.textLabel?.font = UIFont.boldSystemFont(ofSize: 40)
-//            header.textLabel?.frame = header.frame
-//            header.textLabel?.textAlignment = .center
-//        }
-//    }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "GalleryTableCell", for: indexPath) as? GalleryTableViewCell

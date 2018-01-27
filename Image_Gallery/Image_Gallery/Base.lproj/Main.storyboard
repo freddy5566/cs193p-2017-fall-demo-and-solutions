@@ -112,7 +112,7 @@
                                     <outlet property="imageView" destination="Rfk-A4-wij" id="zyf-3s-rQH"/>
                                 </connections>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GalleryCircleCell" id="hwR-KI-ZAf" customClass="UICollectionCell">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GalleryCircleCell" id="hwR-KI-ZAf">
                                 <rect key="frame" x="0.0" y="254.5" width="202" height="196"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
