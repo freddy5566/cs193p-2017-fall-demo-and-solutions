@@ -8,13 +8,27 @@
 
 import UIKit
 
-class GalleryCollectionViewController: UICollectionViewController, UICollectionViewDragDelegate, UICollectionViewDropDelegate {
+class GalleryCollectionViewController: UICollectionViewController, UICollectionViewDragDelegate, UICollectionViewDropDelegate, UICollectionViewDelegateFlowLayout {
    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView?.dropDelegate = self
         collectionView?.dragDelegate = self
+        collectionView?.addGestureRecognizer(UIPinchGestureRecognizer(target: self, action: #selector(scalCell(_:))))
+    }
+    
+    private var scaleForCollectionViewCell: CGFloat = 1.0
+    
+    @objc private func scalCell(_ reconizer: UIPinchGestureRecognizer) {
+        switch reconizer.state {
+        case .changed, .ended:
+            scaleForCollectionViewCell *= reconizer.scale
+            reconizer.scale = 1
+            flowLayout?.invalidateLayout()
+        default:
+            break
+        }
     }
     
     private var galleryImageURL = [URL]() {
@@ -99,17 +113,26 @@ class GalleryCollectionViewController: UICollectionViewController, UICollectionV
     
 
    
-    /*
+    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if let cell = sender as? GalleryCollectionViewCell {
+            return cell.imageURL != nil
+        } else {
+            return false
+        }
     }
-    */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let vc = segue.destination.content as? ImageViewController else { return }
+        if let cell = sender as? GalleryCollectionViewCell {
+            vc.imageURL = cell.imageURL
+        }
+    }
+ 
 
-    // MARK: UICollectionViewDataSource
+    // MARK: - UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
      
@@ -124,9 +147,20 @@ class GalleryCollectionViewController: UICollectionViewController, UICollectionV
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GalleryCollectionCell", for: indexPath) as! GalleryCollectionViewCell
         
         cell.imageURL = galleryImageURL[indexPath.item]
-        print(galleryImageURL.count)
+        
         
         return cell
+    }
+    
+    // MARK: - UICollectionViewLayout
+    private var flowLayout: UICollectionViewLayout? {
+        return collectionView?.collectionViewLayout
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellWidth = 200 * scaleForCollectionViewCell
+        
+        return CGSize(width: cellWidth, height: cellWidth)
     }
 
     // MARK: UICollectionViewDelegate
@@ -160,5 +194,16 @@ class GalleryCollectionViewController: UICollectionViewController, UICollectionV
     }
     */
 
+}
+
+extension UIViewController {
+    
+    var content: UIViewController {
+        if let navcon = self as? UINavigationController {
+            return navcon.visibleViewController ?? self
+        } else {
+            return self
+        }
+    }
 }
 

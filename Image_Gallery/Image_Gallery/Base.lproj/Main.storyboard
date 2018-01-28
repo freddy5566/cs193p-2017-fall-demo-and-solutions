@@ -110,6 +110,7 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="imageView" destination="Rfk-A4-wij" id="zyf-3s-rQH"/>
+                                    <segue destination="Ky1-MJ-KK7" kind="show" id="6xy-uz-Fzm"/>
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GalleryCircleCell" id="hwR-KI-ZAf">
@@ -137,28 +138,40 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="vix-wa-YRk"/>
-                    <connections>
-                        <segue destination="Ky1-MJ-KK7" kind="showDetail" identifier="GetFullPicture" id="HjO-QX-Ekr"/>
-                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vTb-5t-9b1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="471.875" y="-87.3046875"/>
         </scene>
-        <!--View Controller-->
+        <!--Image View Controller-->
         <scene sceneID="LQD-MZ-rwt">
             <objects>
-                <viewController id="Ky1-MJ-KK7" sceneMemberID="viewController">
+                <viewController id="Ky1-MJ-KK7" customClass="ImageViewController" customModule="Image_Gallery" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5n3-X4-9uZ">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ssn-L7-SjE">
+                                <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ssn-L7-SjE" firstAttribute="leading" secondItem="7l3-qd-Lid" secondAttribute="leading" id="1HU-ns-Nim"/>
+                            <constraint firstItem="7l3-qd-Lid" firstAttribute="trailing" secondItem="ssn-L7-SjE" secondAttribute="trailing" id="Qgf-0v-cdy"/>
+                            <constraint firstItem="7l3-qd-Lid" firstAttribute="bottom" secondItem="ssn-L7-SjE" secondAttribute="bottom" id="hwF-S4-4Ys"/>
+                            <constraint firstItem="ssn-L7-SjE" firstAttribute="top" secondItem="7l3-qd-Lid" secondAttribute="top" id="ya6-44-ZEq"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="7l3-qd-Lid"/>
                     </view>
+                    <navigationItem key="navigationItem" id="TuK-ne-SFS"/>
+                    <connections>
+                        <outlet property="scrollView" destination="ssn-L7-SjE" id="VR6-c2-QQL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hzw-Bi-feD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1131" y="-94"/>
+            <point key="canvasLocation" x="1282" y="-94"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eag-7b-F7F">
