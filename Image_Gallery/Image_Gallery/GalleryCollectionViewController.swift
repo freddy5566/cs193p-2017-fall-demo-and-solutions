@@ -125,7 +125,7 @@ class GalleryCollectionViewController: UICollectionViewController, UICollectionV
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let vc = segue.destination.content as? ImageViewController else { return }
+        guard let vc = segue.destination.contents as? ImageViewController else { return }
         if let cell = sender as? GalleryCollectionViewCell {
             vc.imageURL = cell.imageURL
         }
@@ -196,14 +196,4 @@ class GalleryCollectionViewController: UICollectionViewController, UICollectionV
 
 }
 
-extension UIViewController {
-    
-    var content: UIViewController {
-        if let navcon = self as? UINavigationController {
-            return navcon.visibleViewController ?? self
-        } else {
-            return self
-        }
-    }
-}
 
