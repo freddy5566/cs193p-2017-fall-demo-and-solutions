@@ -21,9 +21,9 @@
 | [Lecture 12](https://www.youtube.com/watch?v=cTUlAXBiTho&index=14&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq) | Drag and Drop, Table View, Collection View, and Text Field |[slide](./lecture_12/Lecture_12_Slides.pdf)  | [demo](./lecture_12/demo) | Jan 8, 2018 
 | [Lecture 13](https://www.youtube.com/watch?v=ckCjIJbxYLY&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq&index=15) | Persistence and Documents | [slide](./lecture_13/Lecture_13_Slides.pdf)  | [demo](./lecture_13/demo) | Jan 8, 2018 
 | [Lecture 14](https://www.youtube.com/watch?v=gs3kj4XsqdY&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq&index=16) | Persistence and Documents Demo | [slide](./lecture_14/Lecture_14_Slides.pdf)  | [demo](./lecture_14/demo) | Jan 9, 2018 
-| [Lecture 15](https://www.youtube.com/watch?v=K1tmZhuuyt0&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq&index=17) | Alerts, Notifications, Application Lifecycle | [slide](./lecture_14/Lecture_15_Slides.pdf)  | [demo](./lecture_15/demo) | Jan 9, 2018 
-| [Lecture 16](https://www.youtube.com/watch?v=ke9fzOdg5Pk&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq&index=18) | More Segues | [slide](./lecture_14/Lecture_16_Slides.pdf)  | [demo](./lecture_16/demo) | Jan 9, 2018 
-| [Lecture 17](https://www.youtube.com/watch?v=qOTY7cEl9ZA&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq&index=19) | Core Motion and Camera |[slide](./lecture_14/Lecture_17_Slides.pdf)  | [demo](./lecture_17/demo) | Jan 9, 2018 
+| [Lecture 15](https://www.youtube.com/watch?v=K1tmZhuuyt0&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq&index=17) | Alerts, Notifications, Application Lifecycle | [slide](./lecture_15/Lecture_15_Slides.pdf)  | [demo](./lecture_15/demo) | Jan 9, 2018 
+| [Lecture 16](https://www.youtube.com/watch?v=ke9fzOdg5Pk&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq&index=18) | More Segues | [slide](./lecture_16/Lecture_16_Slides.pdf)  | [demo](./lecture_16/demo) | Feb 2, 2018 
+| [Lecture 17](https://www.youtube.com/watch?v=qOTY7cEl9ZA&list=PLPA-ayBrweUzGFmkT_W65z64MoGnKRZMq&index=19) | Core Motion and Camera |[slide](./lecture_17/Lecture_17_Slides.pdf)  | [demo](./lecture_17/demo) | Feb 2, 2018 
 
 ## 2017 Winter Core Data 
 
