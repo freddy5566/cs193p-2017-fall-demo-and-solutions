@@ -59,5 +59,6 @@
 | [Graphical Set](assignment/Project_3.pdf) | [Graphical Set](./Graphic_Set) |Jan 13. 2018
 | [Animated Set](assignment/Project_4.pdf) |[Animated Set](./Animated_Set) | Jan 17, 2018
 | [Image Gallery](assignment/Project_5.pdf) | [Image Gallery](./Image_Gallery) | Jan 28, 2018
-| [Persistent Image](assignment/Project_6.pdf)| 
+| [Persistent Image](assignment/Project_6.pdf)| [Persistent Image](./Presistent_Image_Gallery) | Feb 22, 2018
+
 
